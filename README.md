@@ -1,2 +1,2 @@
 # pentabong
-Game Server Project with Modern C++ &amp; Boost
+Game Server Framework with Modern C++ &amp; Boost
