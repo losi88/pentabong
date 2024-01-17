@@ -3,10 +3,18 @@
 
 #include "ari.h"
 
-using namespace std;
-
-int main()
+Ari* Ari::GetInstance()
 {
-	cout << "Hello CMake." << endl;
-	return 0;
+	if (nullptr == _instance)
+	{
+		_instance = new Ari();
+		return _instance;
+	}
+
+	return _instance;
+}
+
+void Ari::Print()
+{
+	std::cout << "MareMareGame wil make MareMareWorld!!!" << std::endl;
 }

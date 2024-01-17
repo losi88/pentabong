@@ -5,4 +5,19 @@
 
 #include <iostream>
 
-// TODO: Reference additional headers your program requires here.
+#ifdef _WINDLL
+#define DLLIMPORT __declspec(dllexport)
+#else
+#define DLLEXPORT __declspec(dllimport)
+#endif
+
+
+class Ari
+{
+private:
+	Ari* _instance;
+
+public:
+	Ari* GetInstance();
+	void Print();
+};
