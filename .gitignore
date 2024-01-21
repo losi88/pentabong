@@ -405,7 +405,7 @@ FodyWeavers.xsd
 # Additional files built by Visual Studio
 
 # Output Files
-bin/
+#bin/
 lib/
 
 
