@@ -21,6 +21,6 @@ endif (NOT CMAKE_BUILD_TYPE)
 
 set_target_properties(${target}
     PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/../../bin"
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/../../../bin"
 )
 

@@ -1,0 +1,13 @@
+{
+    "version": 1,
+    "configurePresets": [
+        {
+            "name": "msvc",
+            "binaryDir": "./.msvc",
+            "generator": "Visual Studio 17 2022",
+            "cacheVariables": {
+                "CMAKE_CONFIGURATION_TYPES": "debug;release"
+            }
+        }
+    ]
+}
