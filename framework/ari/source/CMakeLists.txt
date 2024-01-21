@@ -13,10 +13,11 @@ source_group(source FILES ${source})
 ### Add source to this project's executable.
 add_library(${target} SHARED ${include} ${source})
 
+### Properties
 set_target_properties(${target}
     PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY ${dir_bin}
-    ARCHIVE_OUTPUT_DIRECTORY ${dir_lib}
+#    RUNTIME_OUTPUT_DIRECTORY ${dir_bin}
+#    ARCHIVE_OUTPUT_DIRECTORY ${dir_lib}
     DEBUG_POSTFIX ${CMAKE_DEBUG_POSTFIX}
 )
 
