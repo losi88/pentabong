@@ -1,26 +1,19 @@
-﻿### CMakeList.txt : CMake project for ari, include source and define
+### CMakeList.txt : CMake project for ari, include source and define
 ### project specific logic here.
 ###
 
-set(target ari)
+set(target pentabong)
 
-file(GLOB include ../include/ari/*.h)
 file(GLOB source ./*.cpp ./*.h)
 
-source_group(include FILES ${include})
 source_group(source FILES ${source})
 
 ### Add source to this project's executable.
-#add_executable(ari ${include} ${source})
-add_library(${target} SHARED ${include} ${source})
+add_executable(${target} ${source})
 
 set_target_properties(${target}
     PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${dir_bin}
-)
-set_target_properties(${target}
-    PROPERTIES
-    ARCHIVE_OUTPUT_DIRECTORY ${dir_lib}
 )
 set_target_properties(${target}
     PROPERTIES
@@ -30,4 +23,4 @@ set_target_properties(${target}
 include_directories(${target} .)
 include_directories(${target} ${dir_ari_include})
 
-add_compile_definitions(ARI_EXPORTS)
+target_link_libraries(${target} PRIVATE ari)

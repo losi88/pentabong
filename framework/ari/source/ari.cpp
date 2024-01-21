@@ -1,7 +1,9 @@
 ﻿// ari.cpp : Defines the entry point for the application.
 //
 
-#include "ari.h"
+#include "ari/ari.h"
+
+Ari* Ari::_instance = nullptr;
 
 Ari* Ari::GetInstance()
 {
