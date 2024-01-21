@@ -11,23 +11,15 @@ source_group(include FILES ${include})
 source_group(source FILES ${source})
 
 ### Add source to this project's executable.
-#add_executable(ari ${include} ${source})
 add_library(${target} SHARED ${include} ${source})
 
 set_target_properties(${target}
     PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${dir_bin}
-)
-set_target_properties(${target}
-    PROPERTIES
     ARCHIVE_OUTPUT_DIRECTORY ${dir_lib}
-)
-set_target_properties(${target}
-    PROPERTIES
     DEBUG_POSTFIX ${CMAKE_DEBUG_POSTFIX}
 )
 
-include_directories(${target} .)
-include_directories(${target} ${dir_ari_include})
+include_directories(${target} . ${dir_ari_include})
 
 add_compile_definitions(ARI_EXPORTS)

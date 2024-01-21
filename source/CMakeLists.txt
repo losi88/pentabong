@@ -14,13 +14,9 @@ add_executable(${target} ${source})
 set_target_properties(${target}
     PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${dir_bin}
-)
-set_target_properties(${target}
-    PROPERTIES
     DEBUG_POSTFIX ${CMAKE_DEBUG_POSTFIX}
 )
 
-include_directories(${target} .)
-include_directories(${target} ${dir_ari_include})
+include_directories(${target} . ${dir_ari_include})
 
 target_link_libraries(${target} PRIVATE ari)
