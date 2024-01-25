@@ -3,8 +3,14 @@
 
 #include "ari/ari.h"
 
-void main(int argc, int** argv)
+import helloworld;
+
+int main(int argc, int** argv)
 {
 	Ari* ari = Ari::GetInstance();
 	ari->Print();
+   
+	hello();
+	
+	return 0;
 }

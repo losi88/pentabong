@@ -13,6 +13,7 @@ add_executable(${target} ${source})
 
 set_target_properties(${target}
     PROPERTIES
+    CXX_STANDARD 20
     RUNTIME_OUTPUT_DIRECTORY ${dir_bin}
     DEBUG_POSTFIX ${CMAKE_DEBUG_POSTFIX}
 )

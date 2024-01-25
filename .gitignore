@@ -407,6 +407,8 @@ FodyWeavers.xsd
 # Output Files
 #bin/
 lib/
+bin/ari*
+bin/pentabong*
 
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudio,cmake
