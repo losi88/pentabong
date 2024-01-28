@@ -1,5 +1,5 @@
 
-set(target hello_test)
+set(target ari_test)
 
 file(GLOB source ./*.cpp)
 
@@ -13,8 +13,6 @@ set_target_properties(${target}
 
 add_test(NAME ${target} COMMAND ${target})
 
-include_directories(${target} ${CMAKE_SOURCE_DIR}/external/googletest-1.14.0/include)
+include_directories(${target} ${dir_gtest_include})
 
-target_link_libraries(${target}
-	$<$<CONFIG:Debug>:${CMAKE_SOURCE_DIR}/external/googletest-1.14.0/debug/gtest.lib>
-	$<$<CONFIG:Release>:${CMAKE_SOURCE_DIR}/external/googletest-1.14.0/release/gtest.lib>)
+target_link_libraries(${target} ${path_gtest_lib})

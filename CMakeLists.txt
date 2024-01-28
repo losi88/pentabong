@@ -17,6 +17,11 @@ set(dir_proto_datatable ${CMAKE_SOURCE_DIR}/proto/datatable_generated)
 set(dir_proto_packet${CMAKE_SOURCE_DIR}/proto/packet_generated)
 set(dir_proto_property ${CMAKE_SOURCE_DIR}/proto/property_generated)
 
+set(dir_gtest_include ${CMAKE_SOURCE_DIR}/external/googletest-1.14.0/include)
+set(path_gtest_lib
+    $<$<CONFIG:Debug>:${CMAKE_SOURCE_DIR}/external/googletest-1.14.0/bin/debug/gtest.lib>
+	$<$<CONFIG:Release>:${CMAKE_SOURCE_DIR}/external/googletest-1.14.0/bin/release/gtest.lib>)
+
 foreach(OUTPUTCONFIG ${CMAKE_CONFIGURATION_TYPES})
     string(TOUPPER ${OUTPUTCONFIG} OUTPUTCONFIG)
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_${OUTPUTCONFIG} ${dir_bin})
