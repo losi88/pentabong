@@ -31,7 +31,7 @@ int main(int argc, int** argv) {
     return 0;
   }
   
-  Bong::Bong* senbong = factory.GetCreateBong();
+  Bong::Bong* senbong = factory.CreateBong();
 
   senbong->Initialize();
   senbong->Finalize();
