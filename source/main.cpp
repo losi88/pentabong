@@ -1,10 +1,9 @@
 
 #pragma once
 
-#include <Windows.h>
 #include <iostream>
 #include "ari/ari.h"
-//#include "senbong/senbong.h"
+// #include "senbong/senbong.h"
 
 import bong;
 
@@ -24,21 +23,19 @@ int main(int argc, int** argv) {
   test->Print();
 
   static const std::string senbongPath = "../bin/senbong_d.dll";
-  HMODULE handle = LoadLibraryA(senbongPath.c_str());
 
-  if (nullptr == handle) {
-    std::cout << "Fail to load a dll." << std::endl;
+  Bong::Factory factory;
+
+  bool ret = factory.Load(senbongPath.c_str());
+  if (false == ret) {
+    return 0;
   }
+  
+  Bong::Bong* senbong = factory.GetCreateBong();
 
-
-  typedef Bong::Bong* (*CreateBongFunc)();
-  CreateBongFunc createBong = (CreateBongFunc)GetProcAddress(handle, "CreateBong");
-
-  Bong::Bong* bong = createBong();
-
-  bong->Initialize();
-  bong->Finalize();
-  bong->Start();
-  bong->Stop();
+  senbong->Initialize();
+  senbong->Finalize();
+  senbong->Start();
+  senbong->Stop();
   return 0;
 }

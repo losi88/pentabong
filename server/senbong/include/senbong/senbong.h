@@ -1,6 +1,5 @@
 import bong;
 
-extern "C" {
 namespace Senbong {
 class Senbong : public Bong::Bong {
  public:
@@ -17,5 +16,6 @@ class Senbong : public Bong::Bong {
 };
 }  // namespace Senbong
 
+extern "C" {
 __declspec(dllexport) Bong::Bong* CreateBong() { return new Senbong::Senbong(); };
 }
