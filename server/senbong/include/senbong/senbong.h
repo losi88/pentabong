@@ -1,12 +1,13 @@
 import bong;
 
+extern "C" {
 namespace Senbong {
 class Senbong : public Bong::Bong {
  public:
   Senbong() = default;
   ~Senbong() = default;
 
-protected:
+ protected:
   virtual bool OnInitialize() override;
   virtual void OnFinalize() override;
 
@@ -15,3 +16,6 @@ protected:
   virtual void OnStop() override;
 };
 }  // namespace Senbong
+
+__declspec(dllexport) Bong::Bong* CreateBong() { return new Senbong::Senbong(); };
+}
