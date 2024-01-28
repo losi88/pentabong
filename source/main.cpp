@@ -32,6 +32,9 @@ int main(int argc, int** argv) {
   }
   
   Bong::Bong* senbong = factory.CreateBong();
+  if (nullptr == senbong) {
+    return 1;
+  }
 
   senbong->Initialize();
   senbong->Finalize();
