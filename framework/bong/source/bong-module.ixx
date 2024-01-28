@@ -36,7 +36,12 @@ class Factory {
   Factory() = default;
   ~Factory() = default;
 
-  Bong* GetCreateBong() { return _createBong(); }
+  Bong* CreateBong() {
+    if (nullptr == _createBong) {
+      return nullptr;
+    }
+    return _createBong();
+  }
 
   bool Load(char const* path) {
     HMODULE handle = LoadLibraryA(path);
