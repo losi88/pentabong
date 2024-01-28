@@ -3,5 +3,4 @@
 #
 
 # Include sub-projects.
-add_subdirectory (ari)
-add_subdirectory (bong)
+add_subdirectory (senbong)

@@ -19,5 +19,7 @@ set_target_properties(${target}
 )
 
 include_directories(${target} . ${dir_ari_include})
+include_directories(${target} . ${dir_senbong_include})
 
 target_link_libraries(${target} PRIVATE ari)
+target_link_libraries(${target} PRIVATE bong)

@@ -11,6 +11,8 @@ set(dir_bin ${CMAKE_SOURCE_DIR}/bin)
 set(dir_lib ${CMAKE_SOURCE_DIR}/lib)
 
 set(dir_ari_include ${CMAKE_SOURCE_DIR}/framework/ari/include)
+set(dir_bong_include ${CMAKE_SOURCE_DIR}/framework/bong/include)
+set(dir_senbong_include ${CMAKE_SOURCE_DIR}/server/senbong/include)
 
 set(dir_proto_config ${CMAKE_SOURCE_DIR}/proto/config_generated)
 set(dir_proto_datatable ${CMAKE_SOURCE_DIR}/proto/datatable_generated)
@@ -32,5 +34,5 @@ endforeach( OUTPUTCONFIG CMAKE_CONFIGURATION_TYPES )
 # Include sub-projects.
 add_subdirectory (framework)
 add_subdirectory (proto)
-#add_subdirectory (server)
+add_subdirectory (server)
 add_subdirectory (source)
