@@ -6,16 +6,8 @@ export module bong;
 #include <stdio.h>
 
 export namespace Bong {
-class IBong {
- protected:
-  virtual bool OnInitialize() = 0;
-  virtual void OnFinalize() = 0;
 
-  virtual bool OnStart() = 0;
-  virtual void OnStop() = 0;
-};
-
-class Bong : public IBong {
+class Bong {
  public:
   Bong() = default;
   ~Bong() = default;
@@ -27,6 +19,13 @@ class Bong : public IBong {
   virtual bool Start() { return OnStart(); }
 
   virtual void Stop() { OnStop(); }
+
+ protected:
+  virtual bool OnInitialize() = 0;
+  virtual void OnFinalize() = 0;
+
+  virtual bool OnStart() = 0;
+  virtual void OnStop() = 0;
 };
 
 class Factory {
