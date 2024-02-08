@@ -1,16 +1,16 @@
 module;
 
-export module bong;
-
 #include <Windows.h>
 #include <stdio.h>
+
+export module bong;
 
 export namespace Bong {
 
 class Bong {
  public:
   Bong() = default;
-  ~Bong() = default;
+  virtual ~Bong() = default;
 
  public:
   virtual bool Initialize() { return OnInitialize(); }
