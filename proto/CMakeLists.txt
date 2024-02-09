@@ -1,5 +1,5 @@
 
-set (target proto)
+set (target_protoc protoc)
 
 file(GLOB config ./config/*.proto)
 file(GLOB datatable ./datatable/*.proto)
@@ -20,23 +20,23 @@ source_group(datatable_generated FILES ${datatable_generated})
 source_group(packet_generated FILES ${packet_generated})
 source_group(property_generated FILES ${property_generated})
 
-set(protoc ${CMAKE_SOURCE_DIR}/external/protoc-25.2/bin/win64/protoc.exe)
+set(path_protoc ${CMAKE_SOURCE_DIR}/external/protoc-25.2/bin/win64/protoc.exe)
 
-add_custom_target(${target}
-	COMMAND ${protoc} --proto_path=${CMAKE_SOURCE_DIR}/proto/config/ --cpp_out=${CMAKE_SOURCE_DIR}/proto/config_generated/ ${CMAKE_SOURCE_DIR}/proto/config/*.proto
-	#COMMAND ${protoc} --proto_path=${CMAKE_SOURCE_DIR}/proto/datatable/ --cpp_out=${CMAKE_SOURCE_DIR}/proto/datatable_generated/ ${CMAKE_SOURCE_DIR}/proto/datatable/*.proto
-	#COMMAND ${protoc} --proto_path=${CMAKE_SOURCE_DIR}/proto/packet/ --cpp_out=${CMAKE_SOURCE_DIR}/proto/packet_generated/ ${CMAKE_SOURCE_DIR}/proto/packet/*.proto
-	#COMMAND ${protoc} --proto_path=${CMAKE_SOURCE_DIR}/proto/property/ --cpp_out=${CMAKE_SOURCE_DIR}/proto/property_generated/ ${CMAKE_SOURCE_DIR}/proto/property/*.proto
+add_custom_target(${target_protoc}
+	COMMAND ${path_protoc} --proto_path=${CMAKE_SOURCE_DIR}/proto/config/ --cpp_out=${CMAKE_SOURCE_DIR}/proto/config_generated/ ${CMAKE_SOURCE_DIR}/proto/config/*.proto
+	#COMMAND ${path_protoc} --proto_path=${CMAKE_SOURCE_DIR}/proto/datatable/ --cpp_out=${CMAKE_SOURCE_DIR}/proto/datatable_generated/ ${CMAKE_SOURCE_DIR}/proto/datatable/*.proto
+	#COMMAND ${path_protoc} --proto_path=${CMAKE_SOURCE_DIR}/proto/packet/ --cpp_out=${CMAKE_SOURCE_DIR}/proto/packet_generated/ ${CMAKE_SOURCE_DIR}/proto/packet/*.proto
+	#COMMAND ${path_protoc} --proto_path=${CMAKE_SOURCE_DIR}/proto/property/ --cpp_out=${CMAKE_SOURCE_DIR}/proto/property_generated/ ${CMAKE_SOURCE_DIR}/proto/property/*.proto
 	SOURCES ${config} ${datatable} ${packet} ${property}
 			${config_generated} ${datatable_generated}
 			${packet_generated} ${property_generated})
 
 ### Add source to this project's executable.
-set (targetlib protobong)
+set (target_protobong protobong)
 
-add_library (${targetlib} STATIC)
+add_library (${target_protobong} STATIC)
 
-target_sources (${targetlib}
+target_sources (${target_protobong}
 	PRIVATE ${config_generated}
 	PRIVATE ${datatable_generated}
 	PRIVATE ${packet_generated}
@@ -44,10 +44,12 @@ target_sources (${targetlib}
 )
 
 ### Properties
-set_target_properties(${targetlib}
+set_target_properties(${target_protobong}
     PROPERTIES
     CXX_STANDARD 20
     DEBUG_POSTFIX ${CMAKE_DEBUG_POSTFIX}
 )
 
-include_directories(${targetlib} . ${dir_proto} ${dir_abseil})
+target_include_directories(${target_protobong} PRIVATE .
+                                                  PUBLIC ${dir_proto}
+																																			               PUBLIC ${dir_abseil})

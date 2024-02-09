@@ -30,6 +30,7 @@ set_target_properties(${target}
     DEBUG_POSTFIX ${CMAKE_DEBUG_POSTFIX}
 )
 
-include_directories(${target} . ${dir_bong_include})
+target_include_directories(${target} PRIVATE .
+                                       PRIVATE ${dir_bong_include})
 
 add_compile_definitions(BONG_EXPORTS)

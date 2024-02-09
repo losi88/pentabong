@@ -18,8 +18,11 @@ set_target_properties(${target}
     DEBUG_POSTFIX ${CMAKE_DEBUG_POSTFIX}
 )
 
-include_directories(${target} . ${dir_ari_include})
-include_directories(${target} . ${dir_senbong_include})
+target_include_directories(${target} PRIVATE .
+                                       PRIVATE ${dir_ari_include}
+                                       PRIVATE ${dir_senbong_include}
+                                       PRIVATE ${dir_proto_include})
 
 target_link_libraries(${target} PRIVATE ari)
 target_link_libraries(${target} PRIVATE bong)
+target_link_libraries(${target} PRIVATE protobong)
