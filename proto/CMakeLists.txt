@@ -30,3 +30,23 @@ add_custom_target(${target}
 	SOURCES ${config} ${datatable} ${packet} ${property}
 			${config_generated} ${datatable_generated}
 			${packet_generated} ${property_generated})
+
+### Add source to this project's executable.
+@TODO losi88
+set (targetlib protobong)
+
+add_library ($(targetlib) STATIC)
+
+target_sources ($(targetlib)
+	PRIVATE ${config_generated}
+	PRIVATE ${datatable_generated}
+	PRIVATE ${packet_generated}
+	PRIVATE ${property_generated}
+)
+
+### Properties
+set_target_properties(${target}
+    PROPERTIES
+    CXX_STANDARD 20
+    DEBUG_POSTFIX ${CMAKE_DEBUG_POSTFIX}
+)
