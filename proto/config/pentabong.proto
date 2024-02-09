@@ -1,7 +1,7 @@
-syntax = "proto2";
+syntax = "proto3";
 
 package pentabong;
 
 message Hello {
-    required string text = 1;
+    string text = 1;
 }

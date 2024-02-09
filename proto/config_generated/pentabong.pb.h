@@ -206,8 +206,7 @@ class Hello final :
   enum : int {
     kTextFieldNumber = 1,
   };
-  // required string text = 1;
-  bool has_text() const;
+  // string text = 1;
   void clear_text() ;
   const std::string& text() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -246,9 +245,8 @@ class Hello final :
                               ::google::protobuf::Arena* arena);
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
-    ::google::protobuf::internal::HasBits<1> _has_bits_;
-    mutable ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::internal::ArenaStringPtr text_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -271,15 +269,10 @@ class Hello final :
 
 // Hello
 
-// required string text = 1;
-inline bool Hello::has_text() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
-  return value;
-}
+// string text = 1;
 inline void Hello::clear_text() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.text_.ClearToEmpty();
-  _impl_._has_bits_[0] &= ~0x00000001u;
 }
 inline const std::string& Hello::text() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
@@ -290,7 +283,7 @@ template <typename Arg_, typename... Args_>
 inline PROTOBUF_ALWAYS_INLINE void Hello::set_text(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_._has_bits_[0] |= 0x00000001u;
+  ;
   _impl_.text_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:pentabong.Hello.text)
 }
@@ -305,34 +298,21 @@ inline const std::string& Hello::_internal_text() const {
 }
 inline void Hello::_internal_set_text(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_._has_bits_[0] |= 0x00000001u;
+  ;
   _impl_.text_.Set(value, GetArena());
 }
 inline std::string* Hello::_internal_mutable_text() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_._has_bits_[0] |= 0x00000001u;
+  ;
   return _impl_.text_.Mutable( GetArena());
 }
 inline std::string* Hello::release_text() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   // @@protoc_insertion_point(field_release:pentabong.Hello.text)
-  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
-    return nullptr;
-  }
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  auto* released = _impl_.text_.Release();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.text_.Set("", GetArena());
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  return released;
+  return _impl_.text_.Release();
 }
 inline void Hello::set_allocated_text(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
   _impl_.text_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
         if (_impl_.text_.IsDefault()) {

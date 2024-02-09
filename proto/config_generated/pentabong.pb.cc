@@ -24,10 +24,10 @@ namespace pentabong {
 
 inline constexpr Hello::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : _cached_size_{0},
-        text_(
+      : text_(
             &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()) {}
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
 
 template <typename>
 PROTOBUF_CONSTEXPR Hello::Hello(::_pbi::ConstantInitialized)
@@ -50,7 +50,7 @@ static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_pentabong_2eproto = nullptr;
 const ::uint32_t TableStruct_pentabong_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
     protodesc_cold) = {
-    PROTOBUF_FIELD_OFFSET(::pentabong::Hello, _impl_._has_bits_),
+    ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::pentabong::Hello, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
@@ -59,12 +59,11 @@ const ::uint32_t TableStruct_pentabong_2eproto::offsets[] PROTOBUF_SECTION_VARIA
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::pentabong::Hello, _impl_.text_),
-    0,
 };
 
 static const ::_pbi::MigrationSchema
     schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-        {0, 9, -1, sizeof(::pentabong::Hello)},
+        {0, -1, -1, sizeof(::pentabong::Hello)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -72,13 +71,13 @@ static const ::_pb::Message* const file_default_instances[] = {
 };
 const char descriptor_table_protodef_pentabong_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
     "\n\017pentabong.proto\022\tpentabong\"\025\n\005Hello\022\014\n"
-    "\004text\030\001 \002(\t"
+    "\004text\030\001 \001(\tb\006proto3"
 };
 static ::absl::once_flag descriptor_table_pentabong_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_pentabong_2eproto = {
     false,
     false,
-    51,
+    59,
     descriptor_table_protodef_pentabong_2eproto,
     "pentabong.proto",
     &descriptor_table_pentabong_2eproto_once,
@@ -115,15 +114,6 @@ namespace pentabong {
 
 class Hello::_Internal {
  public:
-  using HasBits = decltype(std::declval<Hello>()._impl_._has_bits_);
-  static constexpr ::int32_t kHasBitsOffset =
-    8 * PROTOBUF_FIELD_OFFSET(Hello, _impl_._has_bits_);
-  static void set_has_text(HasBits* has_bits) {
-    (*has_bits)[0] |= 1u;
-  }
-  static bool MissingRequiredFields(const HasBits& has_bits) {
-    return ((has_bits[0] & 0x00000001) ^ 0x00000001) != 0;
-  }
 };
 
 Hello::Hello(::google::protobuf::Arena* arena)
@@ -134,9 +124,8 @@ Hello::Hello(::google::protobuf::Arena* arena)
 inline PROTOBUF_NDEBUG_INLINE Hello::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
-      : _has_bits_{from._has_bits_},
-        _cached_size_{0},
-        text_(arena, from.text_) {}
+      : text_(arena, from.text_),
+        _cached_size_{0} {}
 
 Hello::Hello(
     ::google::protobuf::Arena* arena,
@@ -153,8 +142,8 @@ Hello::Hello(
 inline PROTOBUF_NDEBUG_INLINE Hello::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : _cached_size_{0},
-        text_(arena) {}
+      : text_(arena),
+        _cached_size_{0} {}
 
 inline void Hello::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
@@ -177,11 +166,7 @@ PROTOBUF_NOINLINE void Hello::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    _impl_.text_.ClearNonDefaultToEmpty();
-  }
-  _impl_._has_bits_.Clear();
+  _impl_.text_.ClearToEmpty();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -195,7 +180,7 @@ const char* Hello::_InternalParse(
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
 const ::_pbi::TcParseTable<0, 1, 0, 28, 2> Hello::_table_ = {
   {
-    PROTOBUF_FIELD_OFFSET(Hello, _impl_._has_bits_),
+    0,  // no _has_bits_
     0, // no _extensions_
     1, 0,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
@@ -207,15 +192,15 @@ const ::_pbi::TcParseTable<0, 1, 0, 28, 2> Hello::_table_ = {
     &_Hello_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // required string text = 1;
-    {::_pbi::TcParser::FastSS1,
-     {10, 0, 0, PROTOBUF_FIELD_OFFSET(Hello, _impl_.text_)}},
+    // string text = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(Hello, _impl_.text_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // required string text = 1;
-    {PROTOBUF_FIELD_OFFSET(Hello, _impl_.text_), _Internal::kHasBitsOffset + 0, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kRawString | ::_fl::kRepAString)},
+    // string text = 1;
+    {PROTOBUF_FIELD_OFFSET(Hello, _impl_.text_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
@@ -232,12 +217,11 @@ const ::_pbi::TcParseTable<0, 1, 0, 28, 2> Hello::_table_ = {
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  cached_has_bits = _impl_._has_bits_[0];
-  // required string text = 1;
-  if (cached_has_bits & 0x00000001u) {
+  // string text = 1;
+  if (!this->_internal_text().empty()) {
     const std::string& _s = this->_internal_text();
-    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(_s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormat::SERIALIZE,
-                                "pentabong.Hello.text");
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "pentabong.Hello.text");
     target = stream->WriteStringMaybeAliased(1, _s, target);
   }
 
@@ -258,9 +242,8 @@ const ::_pbi::TcParseTable<0, 1, 0, 28, 2> Hello::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // required string text = 1;
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
+  // string text = 1;
+  if (!this->_internal_text().empty()) {
     total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                     this->_internal_text());
   }
@@ -284,7 +267,7 @@ void Hello::MergeImpl(::google::protobuf::Message& to_msg, const ::google::proto
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+  if (!from._internal_text().empty()) {
     _this->_internal_set_text(from._internal_text());
   }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
@@ -298,9 +281,6 @@ void Hello::CopyFrom(const Hello& from) {
 }
 
 PROTOBUF_NOINLINE bool Hello::IsInitialized() const {
-  if (_Internal::MissingRequiredFields(_impl_._has_bits_)) {
-    return false;
-  }
   return true;
 }
 
@@ -312,7 +292,6 @@ void Hello::InternalSwap(Hello* PROTOBUF_RESTRICT other) {
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.text_, &other->_impl_.text_, arena);
 }
 
