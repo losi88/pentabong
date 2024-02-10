@@ -20,27 +20,33 @@ source_group(datatable_generated FILES ${datatable_generated})
 source_group(packet_generated FILES ${packet_generated})
 source_group(property_generated FILES ${property_generated})
 
-set(path_protoc ${CMAKE_SOURCE_DIR}/external/protoc-25.2/bin/win64/protoc.exe)
+set(path_protoc ${CMAKE_SOURCE_DIR}/external/protoc-21.12/bin/protoc.exe)
 
 add_custom_target(${target_protoc}
-	COMMAND ${path_protoc} --proto_path=${CMAKE_SOURCE_DIR}/proto/config/ --cpp_out=${CMAKE_SOURCE_DIR}/proto/config_generated/ ${CMAKE_SOURCE_DIR}/proto/config/*.proto
-	#COMMAND ${path_protoc} --proto_path=${CMAKE_SOURCE_DIR}/proto/datatable/ --cpp_out=${CMAKE_SOURCE_DIR}/proto/datatable_generated/ ${CMAKE_SOURCE_DIR}/proto/datatable/*.proto
-	#COMMAND ${path_protoc} --proto_path=${CMAKE_SOURCE_DIR}/proto/packet/ --cpp_out=${CMAKE_SOURCE_DIR}/proto/packet_generated/ ${CMAKE_SOURCE_DIR}/proto/packet/*.proto
-	#COMMAND ${path_protoc} --proto_path=${CMAKE_SOURCE_DIR}/proto/property/ --cpp_out=${CMAKE_SOURCE_DIR}/proto/property_generated/ ${CMAKE_SOURCE_DIR}/proto/property/*.proto
-	SOURCES ${config} ${datatable} ${packet} ${property}
-			${config_generated} ${datatable_generated}
-			${packet_generated} ${property_generated})
+ COMMAND ${path_protoc} --proto_path=${CMAKE_SOURCE_DIR}/proto/config/ --cpp_out=${CMAKE_SOURCE_DIR}/proto/config_generated/ ${CMAKE_SOURCE_DIR}/proto/config/*.proto
+ #COMMAND ${path_protoc} --proto_path=${CMAKE_SOURCE_DIR}/proto/datatable/ --cpp_out=${CMAKE_SOURCE_DIR}/proto/datatable_generated/ ${CMAKE_SOURCE_DIR}/proto/datatable/*.proto
+ #COMMAND ${path_protoc} --proto_path=${CMAKE_SOURCE_DIR}/proto/packet/ --cpp_out=${CMAKE_SOURCE_DIR}/proto/packet_generated/ ${CMAKE_SOURCE_DIR}/proto/packet/*.proto
+ #COMMAND ${path_protoc} --proto_path=${CMAKE_SOURCE_DIR}/proto/property/ --cpp_out=${CMAKE_SOURCE_DIR}/proto/property_generated/ ${CMAKE_SOURCE_DIR}/proto/property/*.proto
+ SOURCES ${config} ${datatable} ${packet} ${property}
+   ${config_generated} ${datatable_generated}
+   ${packet_generated} ${property_generated})
 
 ### Add source to this project's executable.
 set (target_protobong protobong)
 
+set(Protobuf_USE_STATIC_LIBS ON)
+list(APPEND CMAKE_PREFIX_PATH "${CMAKE_SOURCE_DIR}/vcpkg_installed/x64-windows-static-md")
+find_package(Protobuf REQUIRED)
+
 add_library (${target_protobong} STATIC)
 
 target_sources (${target_protobong}
-	PRIVATE ${config_generated}
-	PRIVATE ${datatable_generated}
-	PRIVATE ${packet_generated}
-	PRIVATE ${property_generated}
+ PRIVATE ${config_generated}
+ PRIVATE ${datatable_generated}
+ PRIVATE ${packet_generated}
+ PRIVATE ${property_generated}
+ PRIVATE ${PROTO_SRCS}
+ PRIVATE ${PROTO_HDRS}
 )
 
 ### Properties
@@ -52,4 +58,7 @@ set_target_properties(${target_protobong}
 
 target_include_directories(${target_protobong} PRIVATE .
                                                   PUBLIC ${dir_proto}
-																																			               PUBLIC ${dir_abseil})
+                                                  PUBLIC ${Protobuf_INCLUDE_DIRS})
+
+target_link_libraries(${target_protobong} PUBLIC $<$<CONFIG:Debug>:${CMAKE_SOURCE_DIR}/vcpkg_installed/x64-windows-static-md/debug/lib/libprotobufd.lib>
+                                                    $<$<CONFIG:Release>:${Protobuf_LIBRARIES}>)

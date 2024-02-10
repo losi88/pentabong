@@ -14,8 +14,6 @@ set(dir_ari_include ${CMAKE_SOURCE_DIR}/framework/ari/include)
 set(dir_bong_include ${CMAKE_SOURCE_DIR}/framework/bong/include)
 set(dir_senbong_include ${CMAKE_SOURCE_DIR}/server/senbong/include)
 
-set(dir_proto ${CMAKE_SOURCE_DIR}/external/protobuf-25.2/src)
-set(dir_abseil ${CMAKE_SOURCE_DIR}/external/protobuf-25.2/third_party/abseil-cpp)
 set(dir_proto_include ${CMAKE_SOURCE_DIR}/proto)
 
 set(dir_gtest_include ${CMAKE_SOURCE_DIR}/external/googletest-1.14.0/include)

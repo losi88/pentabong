@@ -1,0 +1,15 @@
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
+  "name": "pentabong",
+  "version": "1.0.0",
+  "dependencies": [
+    "protobuf"
+  ],
+  "builtin-baseline": "2c401863dd54a640aeb26ed736c55489c079323b",
+  "overrides": [
+    {
+        "name": "protobuf",
+        "version": "3.21.12"
+    }
+  ]
+}

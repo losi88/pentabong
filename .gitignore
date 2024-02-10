@@ -410,5 +410,7 @@ lib/
 bin/ari*
 bin/pentabong*
 
+# VCPKG
+vcpkg_installed/
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudio,cmake

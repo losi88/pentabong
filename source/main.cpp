@@ -4,6 +4,7 @@
 #include <iostream>
 #include "ari/ari.h"
 // #include "senbong/senbong.h"
+#include "config_generated/pentabong.pb.h"
 
 import bong;
 
@@ -40,5 +41,9 @@ int main(int argc, int** argv) {
   senbong->Finalize();
   senbong->Start();
   senbong->Stop();
+
+  pentabong::Hello hello;
+  hello.set_text("hello,world");
+  std::cout << hello.text() << std::endl;
   return 0;
 }
