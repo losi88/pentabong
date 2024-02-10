@@ -18,10 +18,13 @@ set_target_properties(${target}
     DEBUG_POSTFIX ${CMAKE_DEBUG_POSTFIX}
 )
 
+target_compile_definitions(${target} PRIVATE "_WIN32_WINNT=0x0601")
+
 target_include_directories(${target} PRIVATE .
                                        PRIVATE ${dir_ari_include}
                                        PRIVATE ${dir_senbong_include}
-                                       PRIVATE ${dir_proto_include})
+                                       PRIVATE ${dir_proto_include}
+                                       PRIVATE ${dir_asio_include})
 
 target_link_libraries(${target} PRIVATE ari)
 target_link_libraries(${target} PRIVATE bong)

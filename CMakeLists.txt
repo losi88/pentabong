@@ -16,6 +16,8 @@ set(dir_senbong_include ${CMAKE_SOURCE_DIR}/server/senbong/include)
 
 set(dir_proto_include ${CMAKE_SOURCE_DIR}/proto)
 
+set(dir_asio_include ${CMAKE_SOURCE_DIR}/external/asio-1.28.0/include)
+
 set(dir_gtest_include ${CMAKE_SOURCE_DIR}/external/googletest-1.14.0/include)
 set(path_gtest_lib
     $<$<CONFIG:Debug>:${CMAKE_SOURCE_DIR}/external/googletest-1.14.0/bin/debug/gtest.lib>
