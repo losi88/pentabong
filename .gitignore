@@ -409,6 +409,11 @@ FodyWeavers.xsd
 lib/
 bin/ari*
 bin/pentabong*
+bin/senbong*
+bin/nobong*
+bin/sacbong*
+bin/jitbong*
+bin/nanbong*
 
 # VCPKG
 vcpkg_installed/
