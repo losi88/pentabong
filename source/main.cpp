@@ -4,6 +4,8 @@
 #include "ari/ari.h"
 // #include "senbong/senbong.h"
 #include "asio/thread.hpp"
+#include "asio/io_context.hpp"
+#include "asio/ip/tcp.hpp"
 #include "config_generated/pentabong.pb.h"
 
 import bong;
@@ -16,6 +18,27 @@ public:
 };
 
 void thread_test() { std::cout << "thread test" << std::endl; }
+
+void network_test()
+{
+    while (true)
+    {
+        asio::io_context ioContext;
+
+        asio::ip::tcp::endpoint endpoint(asio::ip::tcp::v4(), 8080);
+
+        asio::ip::tcp::acceptor acceptor(ioContext, endpoint);
+
+        acceptor.async_accept(
+            [](std::error_code ec, asio::ip::tcp::socket socket) {
+                if (!ec) {
+                    std::cout << "accept" << std::endl;
+                }
+            });
+
+        ioContext.run();
+    }
+}
 
 int main(int argc, int** argv) {
     Ari* ari = Ari::GetInstance();
@@ -50,6 +73,8 @@ int main(int argc, int** argv) {
 
     asio::thread t(thread_test);
     t.join();
+
+    network_test();
 
     return 0;
 }
