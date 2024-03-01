@@ -13,6 +13,7 @@ set(dir_lib ${CMAKE_SOURCE_DIR}/lib)
 set(dir_ari_include ${CMAKE_SOURCE_DIR}/framework/ari/include)
 set(dir_bong_include ${CMAKE_SOURCE_DIR}/framework/bong/include)
 set(dir_senbong_include ${CMAKE_SOURCE_DIR}/server/senbong/include)
+set(dir_aoi_include ${CMAKE_SOURCE_DIR}/framework/aoi/include)
 
 set(dir_proto_include ${CMAKE_SOURCE_DIR}/proto)
 
