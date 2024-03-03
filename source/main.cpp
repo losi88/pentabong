@@ -2,6 +2,7 @@
 #include <iostream>
 
 #include "ari/ari.h"
+#include "ari/network.h"
 // #include "senbong/senbong.h"
 #include "asio/thread.hpp"
 #include "asio/io_context.hpp"
@@ -21,23 +22,8 @@ void thread_test() { std::cout << "thread test" << std::endl; }
 
 void network_test()
 {
-    while (true)
-    {
-        asio::io_context ioContext;
-
-        asio::ip::tcp::endpoint endpoint(asio::ip::tcp::v4(), 8080);
-
-        asio::ip::tcp::acceptor acceptor(ioContext, endpoint);
-
-        acceptor.async_accept(
-            [](std::error_code ec, asio::ip::tcp::socket socket) {
-                if (!ec) {
-                    std::cout << "accept" << std::endl;
-                }
-            });
-
-        ioContext.run();
-    }
+    auto network = ari::Network::Make(ari::Protocol::TCP, ari::IP::V4, 8080);
+    network->Start();
 }
 
 int main(int argc, int** argv) {

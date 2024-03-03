@@ -3,6 +3,8 @@
 
 #include "ari/ari.h"
 
+#include <iostream>
+
 Ari* Ari::_instance = nullptr;
 
 Ari* Ari::GetInstance()

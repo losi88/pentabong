@@ -13,15 +13,15 @@ source_group(source FILES ${source} ${module})
 
 ### Add source to this project's executable.
 add_library(${target} SHARED)
-
+ 
 target_sources(${target}
     PRIVATE ${include}
-    PRIVATE ${source}
-    PUBLIC
-        FILE_SET cxx_modules
+    PRIVATE ${source} 
+    PUBLIC 
+        FILE_SET cxx_modules 
         TYPE CXX_MODULES
         FILES ${module}
-)
+) 
 
 ### Properties
 set_target_properties(${target}
@@ -31,6 +31,7 @@ set_target_properties(${target}
 )
 
 target_include_directories(${target} PRIVATE .
-                                       PRIVATE ${dir_ari_include})
+                                       PRIVATE ${dir_ari_include}
+                                       PRIVATE ${dir_asio_include})
 
 add_compile_definitions(ARI_EXPORTS)

@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include <iostream>
+#include <memory>
 
 #ifdef ARI_EXPORTS
 #define ARI_API __declspec(dllexport)
