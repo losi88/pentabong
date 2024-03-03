@@ -414,6 +414,7 @@ bin/nobong*
 bin/sacbong*
 bin/jitbong*
 bin/nanbong*
+bin/testclient*
 
 # VCPKG
 vcpkg_installed/
