@@ -57,3 +57,7 @@ clang, clang-format
  - protobuf
  - boost asio
  - STL c++20
+
+# Convention
+ - 파일 및 디렉토리(폴더)의 이름에는 `-` 대신 `_`를 쓴다. 변수 명에는 `_`를 사용한다.
+ - Enum의 0은 None을 넣어준다. 초기화 되지 않은 상태를 확인 하기 위해서 사용한다.
