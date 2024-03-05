@@ -4,11 +4,10 @@
 #include "ari/ari.h"
 
 namespace ari {
-enum class ARI_API IP { V4, V6 };
+enum class ARI_API IP { None, V4, V6 };
 class ARI_API Network {
 public:
-    static std::unique_ptr<Network> TCP(const IP ip, const int port,
-                                        const int acceptCount);
+    static std::unique_ptr<Network> TCP(const IP ip, const int port);
 
 public:
     virtual ~Network() {}

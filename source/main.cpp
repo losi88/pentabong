@@ -22,7 +22,7 @@ void thread_test() { std::cout << "thread test" << std::endl; }
 
 void network_test()
 {
-    auto network = ari::Network::TCP(ari::IP::V4, 8080, 4);
+    auto network = ari::Network::TCP(ari::IP::V4, 8080);
     network->Start();
 }
 
