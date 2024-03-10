@@ -1,6 +1,9 @@
 
 #include "ari/network.h"
 
+#include "ari/session.h"
+#include "ari/sessionmanager.h"
+#include "ari/socket.h"
 #include "network-tcp.h"
 
 namespace ari {

@@ -107,14 +107,14 @@ void task_test() {
 Player* _Player = nullptr;
 
 class NetworkHandler : public ari::NetworkHandler {
-public:
-    virtual void OnAccepted(
+private:
+    virtual void onAccepted(
         std::shared_ptr<ari::Session>& session) const override final {
         std::cout << "accept: " << session->ID() << std::endl;
         _Player = new Player(session);
     }
-    virtual void OnReceived() const override final {}
-    virtual void OnClosed() const override final {}
+    virtual void onReceived() const override final {}
+    virtual void onClosed() const override final {}
 };
 
 std::shared_ptr<NetworkHandler> _NetworkHandler = std::make_shared<NetworkHandler>();

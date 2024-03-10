@@ -16,6 +16,7 @@ class ARI_API SessionManager {
 public:
     SessionManager();
     SessionManager(const SessionManager&) = delete;
+    SessionManager(SessionManager&&) = delete;
     virtual ~SessionManager();
 
 public:
@@ -28,7 +29,4 @@ private:
     std::atomic_int64_t _idGenerator;
     SessionMap _sessionMap;
 };
-
-static SessionManager _SessionManager;  // @TODO maremare
-
 }  // namespace ari

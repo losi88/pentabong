@@ -6,8 +6,9 @@
 #include "ari/network.h"
 
 namespace ari {
-class Acceptor;
-}
+class SessionManager;
+class Socket;
+}  // namespace ari
 
 namespace ari {
 class Network_TCP : public Network {
@@ -21,11 +22,15 @@ public:
 public:
     virtual bool Start() override final;
 
-private:
-    typedef std::vector<std::unique_ptr<Acceptor>> AcceptorList;
+public:
+    void OnAccepted(std::unique_ptr<Socket> socket) const;
+    void OnReceived() const;
+    void OnClosed() const;
 
+private:
     const IP _ip;
     const int _port;
     const std::shared_ptr<const NetworkHandler> _networkHandler;
+    const std::unique_ptr<SessionManager> _sessionManager;
 };
 }  // namespace ari
