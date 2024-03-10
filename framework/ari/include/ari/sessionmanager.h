@@ -8,6 +8,7 @@
 
 namespace ari {
 class Session;
+class Socket;
 }  // namespace ari
 
 namespace ari {
@@ -18,7 +19,7 @@ public:
     virtual ~SessionManager();
 
 public:
-    std::shared_ptr<Session> CreateSession();
+    std::shared_ptr<Session> CreateSession(std::unique_ptr<Socket> socket);
     void DeleteSession(const int64_t id);
 
 private:
@@ -27,4 +28,7 @@ private:
     std::atomic_int64_t _idGenerator;
     SessionMap _sessionMap;
 };
+
+static SessionManager _SessionManager;  // @TODO maremare
+
 }  // namespace ari

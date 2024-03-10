@@ -3,11 +3,19 @@
 
 namespace ari {
 const size_t Buffer::_MIN_CAPACITY = 1024;
+const size_t Buffer::_MAX_CAPACITY = 1024 * 1024;
 
 Buffer::Buffer() {
     _capacity = 0;
     _size = 0;
     _data = nullptr;
+}
+
+Buffer::Buffer(const size_t size) {
+    _capacity = 0;
+    _size = 0;
+    _data = nullptr;
+    resize(size);
 }
 
 Buffer::Buffer(const size_t size, const char* data) {
@@ -34,6 +42,14 @@ Buffer::~Buffer() {
     if (_data) {
         free(_data);
     }
+}
+
+bool Buffer::Set(const size_t size, const char* data) {
+    return set(size, data);
+}
+
+bool Buffer::Set(const Buffer& buffer) {
+    return Set(buffer.Size(), buffer.Raw());
 }
 
 bool Buffer::Append(const size_t size, const char* data) {
