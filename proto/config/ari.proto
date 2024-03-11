@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package ari;
+
+message AriConfig {
+    enum IP_VERSION {
+        NONE = 0;
+        V4 = 1;
+        V6 = 2;
+    }
+
+    int32 port = 1;
+    int32 acceptCount = 2;
+    int32 workerCount = 3;
+    IP_VERSION ipVersion = 4;
+}

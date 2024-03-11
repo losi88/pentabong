@@ -1,5 +1,4 @@
-
-set(target ari_test)
+set(target aoi_test)
 
 file(GLOB source ./*.cpp)
 
@@ -14,7 +13,9 @@ set_target_properties(${target}
 add_test(NAME ${target} COMMAND ${target})
 
 target_include_directories(${target} PRIVATE ${dir_gtest_include}
-							PRIVATE ${dir_ari_include})
+                                     PRIVATE ${dir_aoi_include}
+                                     PRIVATE ${dir_proto_include})
 
-target_link_libraries(${target} ${path_gtest_lib})
-target_link_libraries(${target} ari)
+target_link_libraries(${target} PRIVATE ${path_gtest_lib})
+target_link_libraries(${target} PRIVATE protobong)
+target_link_libraries(${target} PRIVATE aoi)

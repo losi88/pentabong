@@ -45,35 +45,35 @@ struct TableStruct_pentabong_2eproto {
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_pentabong_2eproto;
 namespace pentabong {
-class Hello;
-struct HelloDefaultTypeInternal;
-extern HelloDefaultTypeInternal _Hello_default_instance_;
+class PentabongConfig;
+struct PentabongConfigDefaultTypeInternal;
+extern PentabongConfigDefaultTypeInternal _PentabongConfig_default_instance_;
 }  // namespace pentabong
 PROTOBUF_NAMESPACE_OPEN
-template<> ::pentabong::Hello* Arena::CreateMaybeMessage<::pentabong::Hello>(Arena*);
+template<> ::pentabong::PentabongConfig* Arena::CreateMaybeMessage<::pentabong::PentabongConfig>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace pentabong {
 
 // ===================================================================
 
-class Hello final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:pentabong.Hello) */ {
+class PentabongConfig final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:pentabong.PentabongConfig) */ {
  public:
-  inline Hello() : Hello(nullptr) {}
-  ~Hello() override;
-  explicit PROTOBUF_CONSTEXPR Hello(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline PentabongConfig() : PentabongConfig(nullptr) {}
+  ~PentabongConfig() override;
+  explicit PROTOBUF_CONSTEXPR PentabongConfig(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  Hello(const Hello& from);
-  Hello(Hello&& from) noexcept
-    : Hello() {
+  PentabongConfig(const PentabongConfig& from);
+  PentabongConfig(PentabongConfig&& from) noexcept
+    : PentabongConfig() {
     *this = ::std::move(from);
   }
 
-  inline Hello& operator=(const Hello& from) {
+  inline PentabongConfig& operator=(const PentabongConfig& from) {
     CopyFrom(from);
     return *this;
   }
-  inline Hello& operator=(Hello&& from) noexcept {
+  inline PentabongConfig& operator=(PentabongConfig&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -96,20 +96,20 @@ class Hello final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const Hello& default_instance() {
+  static const PentabongConfig& default_instance() {
     return *internal_default_instance();
   }
-  static inline const Hello* internal_default_instance() {
-    return reinterpret_cast<const Hello*>(
-               &_Hello_default_instance_);
+  static inline const PentabongConfig* internal_default_instance() {
+    return reinterpret_cast<const PentabongConfig*>(
+               &_PentabongConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     0;
 
-  friend void swap(Hello& a, Hello& b) {
+  friend void swap(PentabongConfig& a, PentabongConfig& b) {
     a.Swap(&b);
   }
-  inline void Swap(Hello* other) {
+  inline void Swap(PentabongConfig* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -122,7 +122,7 @@ class Hello final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(Hello* other) {
+  void UnsafeArenaSwap(PentabongConfig* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -130,14 +130,14 @@ class Hello final :
 
   // implements Message ----------------------------------------------
 
-  Hello* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<Hello>(arena);
+  PentabongConfig* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<PentabongConfig>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const Hello& from);
+  void CopyFrom(const PentabongConfig& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const Hello& from) {
-    Hello::MergeImpl(*this, from);
+  void MergeFrom( const PentabongConfig& from) {
+    PentabongConfig::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
@@ -155,15 +155,15 @@ class Hello final :
   void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(Hello* other);
+  void InternalSwap(PentabongConfig* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "pentabong.Hello";
+    return "pentabong.PentabongConfig";
   }
   protected:
-  explicit Hello(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit PentabongConfig(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   public:
 
@@ -193,7 +193,7 @@ class Hello final :
   std::string* _internal_mutable_text();
   public:
 
-  // @@protoc_insertion_point(class_scope:pentabong.Hello)
+  // @@protoc_insertion_point(class_scope:pentabong.PentabongConfig)
  private:
   class _Internal;
 
@@ -216,44 +216,44 @@ class Hello final :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
-// Hello
+// PentabongConfig
 
 // string text = 1;
-inline void Hello::clear_text() {
+inline void PentabongConfig::clear_text() {
   _impl_.text_.ClearToEmpty();
 }
-inline const std::string& Hello::text() const {
-  // @@protoc_insertion_point(field_get:pentabong.Hello.text)
+inline const std::string& PentabongConfig::text() const {
+  // @@protoc_insertion_point(field_get:pentabong.PentabongConfig.text)
   return _internal_text();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void Hello::set_text(ArgT0&& arg0, ArgT... args) {
+void PentabongConfig::set_text(ArgT0&& arg0, ArgT... args) {
  
  _impl_.text_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:pentabong.Hello.text)
+  // @@protoc_insertion_point(field_set:pentabong.PentabongConfig.text)
 }
-inline std::string* Hello::mutable_text() {
+inline std::string* PentabongConfig::mutable_text() {
   std::string* _s = _internal_mutable_text();
-  // @@protoc_insertion_point(field_mutable:pentabong.Hello.text)
+  // @@protoc_insertion_point(field_mutable:pentabong.PentabongConfig.text)
   return _s;
 }
-inline const std::string& Hello::_internal_text() const {
+inline const std::string& PentabongConfig::_internal_text() const {
   return _impl_.text_.Get();
 }
-inline void Hello::_internal_set_text(const std::string& value) {
+inline void PentabongConfig::_internal_set_text(const std::string& value) {
   
   _impl_.text_.Set(value, GetArenaForAllocation());
 }
-inline std::string* Hello::_internal_mutable_text() {
+inline std::string* PentabongConfig::_internal_mutable_text() {
   
   return _impl_.text_.Mutable(GetArenaForAllocation());
 }
-inline std::string* Hello::release_text() {
-  // @@protoc_insertion_point(field_release:pentabong.Hello.text)
+inline std::string* PentabongConfig::release_text() {
+  // @@protoc_insertion_point(field_release:pentabong.PentabongConfig.text)
   return _impl_.text_.Release();
 }
-inline void Hello::set_allocated_text(std::string* text) {
+inline void PentabongConfig::set_allocated_text(std::string* text) {
   if (text != nullptr) {
     
   } else {
@@ -265,7 +265,7 @@ inline void Hello::set_allocated_text(std::string* text) {
     _impl_.text_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:pentabong.Hello.text)
+  // @@protoc_insertion_point(field_set_allocated:pentabong.PentabongConfig.text)
 }
 
 #ifdef __GNUC__

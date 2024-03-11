@@ -4,7 +4,7 @@
 
 set(target aoi)
 
-file(GLOB include ../include/ari/*.h)
+file(GLOB include ../include/aoi/*.h)
 file(GLOB source ./*.cpp ./*.h)
 file(GLOB module ./*.ixx)
 
@@ -31,6 +31,9 @@ set_target_properties(${target}
 )
 
 target_include_directories(${target} PRIVATE .
-                                       PRIVATE ${dir_aoi_include})
+                                       PRIVATE ${dir_aoi_include}
+                                       PRIVATE ${dir_proto_include})
+
+target_link_libraries(${target} PRIVATE protobong)
 
 add_compile_definitions(AOI_EXPORTS)

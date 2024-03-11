@@ -37,7 +37,7 @@ class Worker {
 public:
     Worker() {
         _th = new std::thread(&Worker::worker_main, this);
-    }  // asio::thread´Â ÀÎÀÚ ³Ñ±æ¼ö°¡ ¾øÀ½.
+    }  // asio::threadï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ±ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 
 public:
     void Post(Task* task) { _taskQueue.push(task); }
@@ -55,7 +55,7 @@ private:
     }
 
 private:
-    std::queue<Task*> _taskQueue;  // ¶ôÀÌ ÇÊ¿äÇÏÁö¸¸ Å×½ºÆ® ÄÚµå´Ï ÀÏ´Ü ¾´´Ù.
+    std::queue<Task*> _taskQueue;  // ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×½ï¿½Æ® ï¿½Úµï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½.
     std::thread* _th;
 };
 
@@ -87,8 +87,8 @@ void task_test() {
     int a = 10;
 
     auto task1 =
-        new Task(1, [a]() {  // Áö¿ªº¯¼ö´Â ·¹ÆÛ·±½º Ä¸ÃÄÇÏ¸é
-                                         // ¾ÈµÇÁö¸¸ Å×½ºÆ® ÄÚµå´Ï ÀÏ´Ü ¾´´Ù.
+        new Task(1, [a]() {  // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Û·ï¿½ï¿½ï¿½ Ä¸ï¿½ï¿½ï¿½Ï¸ï¿½
+                                         // ï¿½Èµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×½ï¿½Æ® ï¿½Úµï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½.
             std::cout << "2. " << a << ", " << std::this_thread::get_id()
                       << std::endl;
 
@@ -151,9 +151,9 @@ int main(int argc, int** argv) {
     senbong->Start();
     senbong->Stop();
 
-    pentabong::Hello hello;
-    hello.set_text("hello,world");
-    std::cout << hello.text() << std::endl;
+    pentabong::PentabongConfig config;
+    config.set_text("hello,world");
+    std::cout << config.text() << std::endl;
 
     task_test();
 

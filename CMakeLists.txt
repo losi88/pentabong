@@ -16,13 +16,17 @@ set(dir_senbong_include ${CMAKE_SOURCE_DIR}/server/senbong/include)
 set(dir_aoi_include ${CMAKE_SOURCE_DIR}/framework/aoi/include)
 
 set(dir_proto_include ${CMAKE_SOURCE_DIR}/proto)
+set(dir_protobuf_include ${CMAKE_SOURCE_DIR}/vcpkg_installed/x64-windows-static-md/include)
+set(path_protobuf_lib ${CMAKE_SOURCE_DIR}/vcpkg_installed/x64-windows-static-md/lib)
+#set(dir_protobuf_include ${CMAKE_SOURCE_DIR}/vcpkg_installed/x64-windows/include)
+#set(path_protobuf_lib ${CMAKE_SOURCE_DIR}/vcpkg_installed/x64-windows/lib)
 
 set(dir_asio_include ${CMAKE_SOURCE_DIR}/external/asio-1.28.0/include)
 
-set(dir_gtest_include ${CMAKE_SOURCE_DIR}/external/googletest-1.14.0/include)
+set(dir_gtest_include ${CMAKE_SOURCE_DIR}/vcpkg_installed/x64-windows-static-md/include)
 set(path_gtest_lib
-    $<$<CONFIG:Debug>:${CMAKE_SOURCE_DIR}/external/googletest-1.14.0/bin/debug/gtest.lib>
-	$<$<CONFIG:Release>:${CMAKE_SOURCE_DIR}/external/googletest-1.14.0/bin/release/gtest.lib>)
+    $<$<CONFIG:Debug>:${CMAKE_SOURCE_DIR}/vcpkg_installed/x64-windows-static-md/debug/lib/gtest.lib>
+	$<$<CONFIG:Release>:${CMAKE_SOURCE_DIR}/vcpkg_installed/x64-windows-static-md/lib/gtest.lib>)
 
 foreach(OUTPUTCONFIG ${CMAKE_CONFIGURATION_TYPES})
     string(TOUPPER ${OUTPUTCONFIG} OUTPUTCONFIG)
