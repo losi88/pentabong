@@ -408,6 +408,7 @@ FodyWeavers.xsd
 #bin/
 lib/
 bin/ari*
+bin/aoi*
 bin/pentabong*
 bin/senbong*
 bin/nobong*
