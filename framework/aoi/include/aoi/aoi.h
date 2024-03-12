@@ -25,6 +25,6 @@ public:
     static AOI* GetInstance();
 
     bool Initialize();
-    const ari::AriConfig* const GetAriConfig() const;
+    const ari::AriConfig& GetAriConfig() const;
 };
 }

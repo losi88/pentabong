@@ -34,7 +34,7 @@ bool AOI::Initialize() {
     } else {
         path = std::string(exePath).substr(0, pos);
     }
-    std::ifstream in(path + "/ari-config.json");
+    std::ifstream in(path + "/config/ari-config.json");
     std::stringstream ss;
 
     if (false == in.is_open()) {
@@ -58,7 +58,7 @@ bool AOI::Initialize() {
     return true;
 }
 
-const ari::AriConfig* const AOI::GetAriConfig() const {
-    return _ariConfig.get();
+const ari::AriConfig& AOI::GetAriConfig() const {
+    return *_ariConfig.get();
 }
 }
