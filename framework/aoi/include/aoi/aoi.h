@@ -26,5 +26,8 @@ public:
 
     bool Initialize();
     const ari::AriConfig& GetAriConfig() const;
+
+private:
+    bool loadAriConfig(const std::string& rootPath);
 };
 }

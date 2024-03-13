@@ -5,14 +5,14 @@
 class AOITest : public testing::Test {
 protected:
     void SetUp() override {
-        a = 0;
+        result = aoi::AOI::GetInstance()->Initialize();
     }
 
-    int a;
+    bool result;
 };
 
 TEST_F(AOITest, SetUp) {
-    EXPECT_EQ(a, 0);
+    EXPECT_EQ(result, true);
 }
 
 TEST_F(AOITest, Initialize) {

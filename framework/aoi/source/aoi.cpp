@@ -27,24 +27,37 @@ bool AOI::Initialize() {
     std::cout << exePath << std::endl;
 
     std::string::size_type pos = std::string(exePath).find_last_of("\\");
-
-    std::string path;
-    if (pos == std::string::npos) {
-        return "";
-    } else {
-        path = std::string(exePath).substr(0, pos);
+    if (pos == std::string::npos)
+    {
+        return false;
     }
-    std::ifstream in(path + "/config/ari-config.json");
-    std::stringstream ss;
+    
+    std::string rootPath = std::string(exePath).substr(0, pos);
+    if (false == loadAriConfig(rootPath)) {
+        return false;
+    }
 
+    return true;
+}
+
+const ari::AriConfig& AOI::GetAriConfig() const {
+    return *_ariConfig.get();
+}
+
+bool AOI::loadAriConfig(const std::string& rootPath) {
+    ari::AriConfig config;
+    const google::protobuf::Descriptor* desc = config.GetDescriptor();
+
+    std::string fullFilePath = rootPath;
+    fullFilePath.append("/config").append("/").append(desc->name()).append(".json");
+    std::stringstream ss;
+    std::ifstream in(fullFilePath);
     if (false == in.is_open()) {
         return false;
     }
 
     ss << in.rdbuf();
     in.close();
-
-    ari::AriConfig config;
 
     google::protobuf::util::JsonPrintOptions options;
     options.add_whitespace = true;
@@ -55,10 +68,7 @@ bool AOI::Initialize() {
     JsonStringToMessage(ss.str(), &config, options2);
 
     _ariConfig.reset(new ari::AriConfig(config));
-    return true;
-}
 
-const ari::AriConfig& AOI::GetAriConfig() const {
-    return *_ariConfig.get();
+    return true;
 }
 }

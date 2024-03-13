@@ -1,0 +1,6 @@
+{
+    "port": 8080,
+    "acceptCount": 4,
+    "workerCount": 4,
+    "ipVersion": 1
+}
