@@ -24,7 +24,7 @@ set(path_protoc ${CMAKE_SOURCE_DIR}/external/protoc-21.12/bin/protoc.exe)
 
 add_custom_target(${target_protoc}
  COMMAND ${path_protoc} --proto_path=${CMAKE_SOURCE_DIR}/proto/config/ --cpp_out=${CMAKE_SOURCE_DIR}/proto/config_generated/ ${CMAKE_SOURCE_DIR}/proto/config/*.proto
- #COMMAND ${path_protoc} --proto_path=${CMAKE_SOURCE_DIR}/proto/datatable/ --cpp_out=${CMAKE_SOURCE_DIR}/proto/datatable_generated/ ${CMAKE_SOURCE_DIR}/proto/datatable/*.proto
+ COMMAND ${path_protoc} --proto_path=${CMAKE_SOURCE_DIR}/proto/datatable/ --cpp_out=${CMAKE_SOURCE_DIR}/proto/datatable_generated/ ${CMAKE_SOURCE_DIR}/proto/datatable/*.proto
  #COMMAND ${path_protoc} --proto_path=${CMAKE_SOURCE_DIR}/proto/packet/ --cpp_out=${CMAKE_SOURCE_DIR}/proto/packet_generated/ ${CMAKE_SOURCE_DIR}/proto/packet/*.proto
  #COMMAND ${path_protoc} --proto_path=${CMAKE_SOURCE_DIR}/proto/property/ --cpp_out=${CMAKE_SOURCE_DIR}/proto/property_generated/ ${CMAKE_SOURCE_DIR}/proto/property/*.proto
  SOURCES ${config} ${datatable} ${packet} ${property}
