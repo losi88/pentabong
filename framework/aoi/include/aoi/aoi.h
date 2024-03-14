@@ -4,6 +4,7 @@
 
 namespace ari {
 class AriConfig;
+class AriData;
 }
 
 namespace aoi {
@@ -20,6 +21,7 @@ private:
     friend Deleter;
 
     std::unique_ptr<ari::AriConfig> _ariConfig;
+    std::unique_ptr<ari::AriData> _ariData;
 
 public:
     static AOI* GetInstance();
@@ -29,5 +31,6 @@ public:
 
 private:
     bool loadAriConfig(const std::string& rootPath);
+    bool loadAriData(const std::string& rootPath);
 };
 }

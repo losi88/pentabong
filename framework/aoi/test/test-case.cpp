@@ -1,6 +1,7 @@
 #include "gtest/gtest.h"
 #include "aoi/aoi.h"
 #include "config_generated/ari.pb.h"
+#include "datatable_generated/ari-data.pb.h"
 
 class AOITest : public testing::Test {
 protected:

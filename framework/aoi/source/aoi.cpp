@@ -6,10 +6,12 @@
 #include <sstream>
 
 #include <google/protobuf/util/json_util.h>
+#include <google/protobuf/stubs/status.h>
 #include <google/protobuf/text_format.h>
 #include <google/protobuf/io/zero_copy_stream_impl.h>
 
 #include "config_generated/ari.pb.h"
+#include "datatable_generated/ari-data.pb.h"
 
 std::unique_ptr<aoi::AOI, aoi::AOI::Deleter> aoi::AOI::_instance;
 std::once_flag aoi::AOI::_flag;
@@ -34,6 +36,10 @@ bool AOI::Initialize() {
     
     std::string rootPath = std::string(exePath).substr(0, pos);
     if (false == loadAriConfig(rootPath)) {
+        return false;
+    }
+
+    if (false == loadAriData(rootPath)) {
         return false;
     }
 
@@ -68,6 +74,37 @@ bool AOI::loadAriConfig(const std::string& rootPath) {
     JsonStringToMessage(ss.str(), &config, options2);
 
     _ariConfig.reset(new ari::AriConfig(config));
+
+    return true;
+}
+
+bool AOI::loadAriData(const std::string& rootPath) {
+    ari::AriData data;
+    const google::protobuf::Descriptor* desc = data.GetDescriptor();
+
+    std::string fullFilePath = rootPath;
+    fullFilePath.append("/datatable")
+        .append("/")
+        .append(desc->name())
+        .append(".json");
+    std::stringstream ss;
+    std::ifstream in(fullFilePath);
+    if (false == in.is_open()) {
+        return false;
+    }
+
+    ss << in.rdbuf();
+    in.close();
+
+    google::protobuf::util::JsonPrintOptions options;
+    options.add_whitespace = true;
+    options.always_print_primitive_fields = true;
+    options.preserve_proto_field_names = true;
+
+    google::protobuf::util::JsonParseOptions options2;
+    google::protobuf::util::Status status = JsonStringToMessage(ss.str(), &data, options2);
+
+    _ariData.reset(new ari::AriData(data));
 
     return true;
 }

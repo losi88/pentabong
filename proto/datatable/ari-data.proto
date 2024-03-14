@@ -6,7 +6,7 @@ message AriData {
     message Ari {
         string name = 1;
         int32 age = 2;
-        repeated string hobby = 3 [packed=true];
+        repeated string hobby = 3;
     }
 
     repeated Ari ari = 1;
