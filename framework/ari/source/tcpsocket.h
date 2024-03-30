@@ -12,18 +12,19 @@ class Session;
 namespace ari {
 class TcpSocket : public Socket {
 public:
-    TcpSocket(asio::ip::tcp::socket socket, const Session& session);
+    TcpSocket(asio::ip::tcp::socket socket);
     TcpSocket(const TcpSocket&) = delete;
     TcpSocket(TcpSocket&&) = delete;
     virtual ~TcpSocket();
 
 public:
-    virtual void Read() override final;
-    virtual void Write() override final;
+    virtual void AsyncRead(std::shared_ptr<Session> session) override final;
+    virtual void AsyncWrite(
+        std::shared_ptr<Session> session,
+        std::unique_ptr<const Buffer> buffer) override final;
 
 private:
     asio::ip::tcp::socket _socket;
     Buffer _readBuffer;
-    const Session& _session;  // have same life-cycle
 };
 }  // namespace ari

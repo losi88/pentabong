@@ -4,6 +4,7 @@
 #include "ari/ari.h"
 
 namespace ari {
+class Buffer;
 class Socket;
 class Network_TCP;
 }  // namespace ari
@@ -11,10 +12,12 @@ class Network_TCP;
 namespace ari {
 class ARI_API Session : public std::enable_shared_from_this<Session> {
 public:
-    static Session* Create(const Network_TCP& network);
+    static Session* Create(std::unique_ptr<Socket> socket,
+                           const Network_TCP& network);
 
 public:
-    Session(const int64_t id, const Network_TCP& network);
+    Session(const int64_t id, std::unique_ptr<Socket> socket,
+            const Network_TCP& network);
     Session(const Session&) = delete;
     Session(Session&&) = delete;
     virtual ~Session();
@@ -28,19 +31,19 @@ public:
     std::shared_ptr<const Session> SharedPtr() const;
 
 public:
+    bool Write(std::unique_ptr<const Buffer> buffer);
+
+private:
     void OnRead(const size_t size, const char* data) const;
     void OnClose() const;
 
+    friend class TcpSocket;
+
 private:
-    bool Initialize(std::unique_ptr<Socket> socket);
     bool Start();
 
     friend class Acceptor;
     friend class Network_TCP;
-
-private:
-    void doRead();
-    void doWrite();
 
 private:
     const int64_t _id;

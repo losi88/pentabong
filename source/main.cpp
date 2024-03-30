@@ -5,6 +5,7 @@
 #include "ari/ari.h"
 #include "ari/network.h"
 #include "ari/session.h"
+#include "ari/buffer.h"
 // #include "senbong/senbong.h"
 #include "asio/io_context.hpp"
 #include "asio/ip/tcp.hpp"
@@ -120,6 +121,9 @@ private:
                             const char* data) const override final {
         std::cout << "receive(" << session->ID() << "): " << data << "(" << size
                   << ")" << std::endl;
+        
+        std::unique_ptr<ari::Buffer> buf = std::make_unique<ari::Buffer>(size, data);
+        const_pointer_cast<ari::Session>(session)->Write(std::move(buf));
     }
     virtual void onClosed(
         std::shared_ptr<const ari::Session> session) const override final {

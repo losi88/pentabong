@@ -20,14 +20,9 @@ void Acceptor::accept() {
     _acceptor.async_accept(
         [this](std::error_code errorCode, asio::ip::tcp::socket socket) {
             if (!errorCode) {
-                auto session = Session::Create(_network);
-                auto tcpSocket =
-                    std::make_unique<TcpSocket>(std::move(socket), *session);
-                if (false == session->Initialize(std::move(tcpSocket))) {
-                    // failed to initialize session
-                } else {
-                    _network.OnAccepted(session);
-                }
+                auto tcpSocket = std::make_unique<TcpSocket>(std::move(socket));
+                auto session = Session::Create(std::move(tcpSocket), _network);
+                _network.OnAccepted(session);
             }
 
             accept();
