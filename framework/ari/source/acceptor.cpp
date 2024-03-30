@@ -22,7 +22,10 @@ void Acceptor::accept() {
             if (!errorCode) {
                 auto tcpSocket = std::make_unique<TcpSocket>(std::move(socket));
                 auto session = Session::Create(std::move(tcpSocket), _network);
-                _network.OnAccepted(session);
+                _network.OnAccepted(std::move(session));
+            } else {
+                // err: failed to accept
+                return;
             }
 
             accept();

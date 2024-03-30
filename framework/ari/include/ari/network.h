@@ -13,25 +13,37 @@ public:
     virtual ~NetworkHandler(){};
 
 private:
+    // @TODO: error code
+    // server side
     virtual void onAccepted(std::shared_ptr<Session> session) const = 0;
     virtual void onReceived(std::shared_ptr<const Session> session,
                             const size_t size, const char* data) const = 0;
     virtual void onClosed(std::shared_ptr<const Session> session) const = 0;
 
-friend class Network_TCP;
+private:
+    // client side
+    virtual void onConnected(std::shared_ptr<Session> session) const = 0;
+
+    friend class Network_TCP;
 };
 
 enum class ARI_API IP { None, V4, V6 };
 class ARI_API Network {
 public:
     static std::unique_ptr<Network> TCP(
-        const IP ip, const int port,
         const std::shared_ptr<const NetworkHandler>& networkHandler);
 
 public:
-    virtual ~Network() {}
+    virtual ~Network() {
+    }
 
 public:
-    virtual bool Start() = 0;
+    // server side
+    virtual bool OpenPort(const IP ip, const int port) = 0;
+    virtual bool ClosePort(const IP ip, const int port) = 0;
+
+public:
+    // client side
+    virtual bool Connect(const char* host, const char* port) = 0;
 };
 }  // namespace ari

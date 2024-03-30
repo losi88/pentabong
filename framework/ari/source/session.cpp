@@ -6,11 +6,11 @@
 #include "network-tcp.h"
 
 namespace ari {
-Session* Session::Create(std::unique_ptr<Socket> socket,
-                         const Network_TCP& network) {
+std::unique_ptr<Session> Session::Create(std::unique_ptr<Socket> socket,
+                                         const Network_TCP& network) {
     static std::atomic_int64_t _idGenerator = 0;
     int64_t id = ++_idGenerator;
-    return new Session(id, std::move(socket), network);
+    return std::make_unique<Session>(id, std::move(socket), network);
 }
 
 Session::Session(const int64_t id, std::unique_ptr<Socket> socket,

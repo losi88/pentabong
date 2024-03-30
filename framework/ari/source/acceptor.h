@@ -15,6 +15,7 @@ public:
              const asio::ip::tcp::endpoint& endPoint,
              const Network_TCP& network);
     Acceptor(const Acceptor&) = delete;
+    Acceptor(Acceptor&&) = delete;
     virtual ~Acceptor();
 
 private:

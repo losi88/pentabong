@@ -12,8 +12,8 @@ class Network_TCP;
 namespace ari {
 class ARI_API Session : public std::enable_shared_from_this<Session> {
 public:
-    static Session* Create(std::unique_ptr<Socket> socket,
-                           const Network_TCP& network);
+    static std::unique_ptr<Session> Create(std::unique_ptr<Socket> socket,
+                                           const Network_TCP& network);
 
 public:
     Session(const int64_t id, std::unique_ptr<Socket> socket,

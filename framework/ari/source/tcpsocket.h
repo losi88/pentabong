@@ -23,6 +23,11 @@ public:
         std::shared_ptr<Session> session,
         std::unique_ptr<const Buffer> buffer) override final;
 
+public:
+    asio::ip::tcp::socket& Socket() {
+        return _socket;
+    }
+
 private:
     asio::ip::tcp::socket _socket;
     Buffer _readBuffer;

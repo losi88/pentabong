@@ -19,7 +19,7 @@ public:
     virtual ~SessionManager();
 
 public:
-    std::shared_ptr<Session> InsertSession(Session* session);
+    std::shared_ptr<Session> InsertSession(std::unique_ptr<Session> session);
     void EraseSession(const int64_t id);
     void EraseSession();
 

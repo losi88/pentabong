@@ -19,4 +19,7 @@ set_target_properties(${target}
 )
 
 target_include_directories(${target} PRIVATE .
-                                        PRIVATE ${dir_asio_include})
+                                        PRIVATE ${dir_asio_include}
+                                        PRIVATE ${dir_ari_include})
+
+target_link_libraries(${target} PRIVATE ari)

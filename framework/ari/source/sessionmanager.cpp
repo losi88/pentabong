@@ -12,7 +12,8 @@ SessionManager::~SessionManager() {
     EraseSession();
 }
 
-std::shared_ptr<Session> SessionManager::InsertSession(Session* session) {
+std::shared_ptr<Session> SessionManager::InsertSession(
+    std::unique_ptr<Session> session) {
     if (nullptr == session) {
         // error: session is nullptr
         return nullptr;
@@ -20,7 +21,7 @@ std::shared_ptr<Session> SessionManager::InsertSession(Session* session) {
 
     auto id = session->ID();
     std::pair<SessionMap::iterator, bool> inserted =
-        _sessionMap.insert(std::make_pair(id, session));
+        _sessionMap.insert(std::make_pair(id, std::move(session)));
     if (false == inserted.second) {
         // error: failed to insert
         return nullptr;

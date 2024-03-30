@@ -3,9 +3,9 @@
 #include <queue>
 
 #include "ari/ari.h"
+#include "ari/buffer.h"
 #include "ari/network.h"
 #include "ari/session.h"
-#include "ari/buffer.h"
 // #include "senbong/senbong.h"
 #include "asio/io_context.hpp"
 #include "asio/ip/tcp.hpp"
@@ -121,13 +121,18 @@ private:
                             const char* data) const override final {
         std::cout << "receive(" << session->ID() << "): " << data << "(" << size
                   << ")" << std::endl;
-        
-        std::unique_ptr<ari::Buffer> buf = std::make_unique<ari::Buffer>(size, data);
+
+        std::unique_ptr<ari::Buffer> buf =
+            std::make_unique<ari::Buffer>(size, data);
         const_pointer_cast<ari::Session>(session)->Write(std::move(buf));
     }
     virtual void onClosed(
         std::shared_ptr<const ari::Session> session) const override final {
         std::cout << "close(" << session->ID() << ")" << std::endl;
+    }
+    virtual void onConnected(
+        std::shared_ptr<ari::Session> session) const override final {
+        std::cout << "connect(do not use)" << std::endl;
     }
 };
 
@@ -135,8 +140,8 @@ std::shared_ptr<NetworkHandler> _NetworkHandler =
     std::make_shared<NetworkHandler>();
 
 void network_test() {
-    auto network = ari::Network::TCP(ari::IP::V4, 8080, _NetworkHandler);
-    network->Start();
+    auto network = ari::Network::TCP(_NetworkHandler);
+    network->OpenPort(ari::IP::V4, 8080);
 }
 
 int main(int argc, int** argv) {
