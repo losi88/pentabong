@@ -1,6 +1,7 @@
 
 #include "acceptor.h"
 
+#include "ari/session.h"
 #include "network-tcp.h"
 #include "tcpsocket.h"
 
@@ -12,14 +13,21 @@ Acceptor::Acceptor(asio::io_context& ioContext,
     accept();
 }
 
-Acceptor::~Acceptor() {}
+Acceptor::~Acceptor() {
+}
 
 void Acceptor::accept() {
     _acceptor.async_accept(
         [this](std::error_code errorCode, asio::ip::tcp::socket socket) {
             if (!errorCode) {
-                auto tcpSocket = std::make_unique<TcpSocket>(std::move(socket));
-                _network.OnAccepted(std::move(tcpSocket));
+                auto session = Session::Create(_network);
+                auto tcpSocket =
+                    std::make_unique<TcpSocket>(std::move(socket), *session);
+                if (false == session->Initialize(std::move(tcpSocket))) {
+                    // failed to initialize session
+                } else {
+                    _network.OnAccepted(session);
+                }
             }
 
             accept();

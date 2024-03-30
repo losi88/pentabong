@@ -20,6 +20,7 @@ public:
 public:
     bool Set(const size_t size, const char* data);
     bool Set(const Buffer& buffer);
+    bool Reset();
     bool Append(const size_t size, const char* data);
     bool Append(const Buffer& buffer);
 
@@ -33,6 +34,7 @@ private:
 
     bool resize(const size_t size);
     bool set(const size_t size, const char* data);
+    bool reset();
     bool append(const size_t size, const char* data);
 
 private:

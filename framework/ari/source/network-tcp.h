@@ -7,7 +7,7 @@
 
 namespace ari {
 class SessionManager;
-class Socket;
+class Session;
 }  // namespace ari
 
 namespace ari {
@@ -23,9 +23,10 @@ public:
     virtual bool Start() override final;
 
 public:
-    void OnAccepted(std::unique_ptr<Socket> socket) const;
-    void OnReceived() const;
-    void OnClosed() const;
+    void OnAccepted(Session* session) const;
+    void OnReceived(const Session& session, const size_t size,
+                    const char* data) const;
+    void OnClosed(const Session& session) const;
 
 private:
     const IP _ip;

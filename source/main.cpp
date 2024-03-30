@@ -9,7 +9,6 @@
 #include "asio/io_context.hpp"
 #include "asio/ip/tcp.hpp"
 #include "config_generated/pentabong.pb.h"
-
 #include "player.h"
 
 import bong;
@@ -18,12 +17,15 @@ import helloworld;
 
 class Sub : public A::Test {
 public:
-    virtual void Print() override { std::cout << "sub" << std::endl; }
+    virtual void Print() override {
+        std::cout << "sub" << std::endl;
+    }
 };
 
 class Task {
 public:
-    Task(int id, std::function<void()> task) : _id(id), _task(task) {}
+    Task(int id, std::function<void()> task) : _id(id), _task(task) {
+    }
 
 private:
     friend class Scheduler;
@@ -37,10 +39,12 @@ class Worker {
 public:
     Worker() {
         _th = new std::thread(&Worker::worker_main, this);
-    }  // asio::thread�� ���� �ѱ���� ����.
+    }
 
 public:
-    void Post(Task* task) { _taskQueue.push(task); }
+    void Post(Task* task) {
+        _taskQueue.push(task);
+    }
 
 private:
     static void worker_main(Worker* worker) {
@@ -55,7 +59,7 @@ private:
     }
 
 private:
-    std::queue<Task*> _taskQueue;  // ���� �ʿ������� �׽�Ʈ �ڵ�� �ϴ� ����.
+    std::queue<Task*> _taskQueue;
     std::thread* _th;
 };
 
@@ -86,20 +90,18 @@ void task_test() {
 
     int a = 10;
 
-    auto task1 =
-        new Task(1, [a]() {  // ���������� ���۷��� ĸ���ϸ�
-                                         // �ȵ����� �׽�Ʈ �ڵ�� �ϴ� ����.
-            std::cout << "2. " << a << ", " << std::this_thread::get_id()
+    auto task1 = new Task(1, [a]() {
+        std::cout << "2. " << a << ", " << std::this_thread::get_id()
+                  << std::endl;
+
+        int b = 20;
+        auto task2 = new Task(2, [b]() {
+            std::cout << "3. " << b << ", " << std::this_thread::get_id()
                       << std::endl;
-
-            int b = 20;
-            auto task2 = new Task(2, [b]() {
-                std::cout << "3. " << b << ", " << std::this_thread::get_id()
-                          << std::endl;
-            });
-
-            _Scheduler->Post(task2);
         });
+
+        _Scheduler->Post(task2);
+    });
 
     _Scheduler->Post(task1);
 }
@@ -109,15 +111,24 @@ Player* _Player = nullptr;
 class NetworkHandler : public ari::NetworkHandler {
 private:
     virtual void onAccepted(
-        std::shared_ptr<ari::Session>& session) const override final {
-        std::cout << "accept: " << session->ID() << std::endl;
+        std::shared_ptr<ari::Session> session) const override final {
+        std::cout << "accept(" << session->ID() << ")" << std::endl;
         _Player = new Player(session);
     }
-    virtual void onReceived() const override final {}
-    virtual void onClosed() const override final {}
+    virtual void onReceived(std::shared_ptr<const ari::Session> session,
+                            const size_t size,
+                            const char* data) const override final {
+        std::cout << "receive(" << session->ID() << "): " << data << "(" << size
+                  << ")" << std::endl;
+    }
+    virtual void onClosed(
+        std::shared_ptr<const ari::Session> session) const override final {
+        std::cout << "close(" << session->ID() << ")" << std::endl;
+    }
 };
 
-std::shared_ptr<NetworkHandler> _NetworkHandler = std::make_shared<NetworkHandler>();
+std::shared_ptr<NetworkHandler> _NetworkHandler =
+    std::make_shared<NetworkHandler>();
 
 void network_test() {
     auto network = ari::Network::TCP(ari::IP::V4, 8080, _NetworkHandler);

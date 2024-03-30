@@ -8,7 +8,6 @@
 
 namespace ari {
 class Session;
-class Socket;
 }  // namespace ari
 
 namespace ari {
@@ -20,13 +19,13 @@ public:
     virtual ~SessionManager();
 
 public:
-    std::shared_ptr<Session> CreateSession(std::unique_ptr<Socket> socket);
-    void DeleteSession(const int64_t id);
+    std::shared_ptr<Session> InsertSession(Session* session);
+    void EraseSession(const int64_t id);
+    void EraseSession();
 
 private:
     typedef std::unordered_map<int64_t, std::shared_ptr<Session>> SessionMap;
 
-    std::atomic_int64_t _idGenerator;
     SessionMap _sessionMap;
 };
 }  // namespace ari

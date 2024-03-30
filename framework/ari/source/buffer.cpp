@@ -52,6 +52,10 @@ bool Buffer::Set(const Buffer& buffer) {
     return Set(buffer.Size(), buffer.Raw());
 }
 
+bool Buffer::Reset() {
+    return reset();
+}
+
 bool Buffer::Append(const size_t size, const char* data) {
     return append(size, data);
 }
@@ -93,6 +97,7 @@ bool Buffer::resize(const size_t size) {
         return false;
     }
 
+    _size = size;
     return true;
 }
 
@@ -101,17 +106,22 @@ bool Buffer::set(const size_t size, const char* data) {
         return false;
     }
 
-    _size = size;
     memcpy(_data, data, _size);
     return true;
 }
+
+bool Buffer::reset() {
+    memset(_data, 0, _size);
+    _size = 0;
+    return true;
+}
+
 bool Buffer::append(const size_t size, const char* data) {
     if (false == resize(_size + size)) {
         return false;
     }
 
     memcpy(_data + _size, data, size);
-    _size += size;
     return true;
 }
 }  // namespace ari

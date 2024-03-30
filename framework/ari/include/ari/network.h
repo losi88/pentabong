@@ -13,9 +13,10 @@ public:
     virtual ~NetworkHandler(){};
 
 private:
-    virtual void onAccepted(std::shared_ptr<Session>& session) const = 0;
-    virtual void onReceived() const = 0;
-    virtual void onClosed() const = 0;
+    virtual void onAccepted(std::shared_ptr<Session> session) const = 0;
+    virtual void onReceived(std::shared_ptr<const Session> session,
+                            const size_t size, const char* data) const = 0;
+    virtual void onClosed(std::shared_ptr<const Session> session) const = 0;
 
 friend class Network_TCP;
 };
