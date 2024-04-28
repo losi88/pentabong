@@ -9,7 +9,7 @@ class Network_TCP;
 }  // namespace ari
 
 namespace ari {
-class Acceptor {
+class Acceptor : std::enable_shared_from_this<Acceptor> {
 public:
     Acceptor(asio::io_context& ioContext,
              const asio::ip::tcp::endpoint& endPoint,

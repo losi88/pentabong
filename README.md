@@ -64,5 +64,5 @@ clang, clang-format
 
 # TODO
 - Network
-	- ClosePort
 	- Accept, Connect Thread
+		- Accept port별로 thread를 분리할지?

@@ -142,6 +142,9 @@ std::shared_ptr<NetworkHandler> _NetworkHandler =
 void network_test() {
     auto network = ari::Network::TCP(_NetworkHandler);
     network->OpenPort(ari::IP::V4, 8080);
+
+    while (true)
+        ;
 }
 
 int main(int argc, int** argv) {

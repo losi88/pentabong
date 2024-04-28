@@ -14,6 +14,7 @@ Acceptor::Acceptor(asio::io_context& ioContext,
 }
 
 Acceptor::~Acceptor() {
+    _acceptor.close();
 }
 
 void Acceptor::accept() {
