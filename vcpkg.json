@@ -4,7 +4,8 @@
   "version": "1.0.0",
   "dependencies": [
     "protobuf",
-    "gtest"
+    "gtest",
+    "rapidjson"
   ],
   "builtin-baseline": "2c401863dd54a640aeb26ed736c55489c079323b",
   "overrides": [
@@ -15,6 +16,10 @@
     {
         "name": "gtest",
         "version": "1.14.0"
+    },
+    {
+        "name": "rapidjson",
+        "version": "2023-04-27"
     }
   ]
 }
