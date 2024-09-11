@@ -12,6 +12,12 @@ set_target_properties(${target}
 
 add_test(NAME ${target} COMMAND ${target})
 
+set_target_properties(${target}
+    PROPERTIES
+    CXX_STANDARD 20
+    DEBUG_POSTFIX ${CMAKE_DEBUG_POSTFIX}
+)
+
 target_include_directories(${target} PRIVATE ${dir_gtest_include}
                                      PRIVATE ${dir_aoi_include}
                                      PRIVATE ${dir_proto_include})
