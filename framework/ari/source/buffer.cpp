@@ -117,11 +117,12 @@ bool Buffer::reset() {
 }
 
 bool Buffer::append(const size_t size, const char* data) {
+    const auto current = _size;
     if (false == resize(_size + size)) {
         return false;
     }
 
-    memcpy(_data + _size, data, size);
+    memcpy(_data + current, data, size);
     return true;
 }
 }  // namespace ari
